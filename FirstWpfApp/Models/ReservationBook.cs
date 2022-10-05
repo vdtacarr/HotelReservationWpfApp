@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FirstWpfApp.Models
+{
+    public class ReservationBook
+    {
+        private readonly List<Reservation> _reservations;
+
+
+        public ReservationBook()
+        {
+            _reservations = new List<Reservation>();   
+        }
+
+        public IEnumerable<Reservation> GetReservationsForUser(string username)
+        {
+            return _reservations.Where(x => x.Username == username);
+        }
+
+        public IEnumerable<Reservation> GetAllReservations()
+        {
+            return _reservations;
+        }
+
+        public void AddReservation(Reservation reservation)
+        {
+            foreach (Reservation existingReservation in _reservations)
+            {
+                if (existingReservation.Conflicts(reservation))
+                {
+                    return;
+                }
+            }
+            _reservations.Add(reservation);
+        }
+        
+    }
+}

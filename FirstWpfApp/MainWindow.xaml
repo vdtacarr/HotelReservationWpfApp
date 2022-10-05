@@ -1,0 +1,26 @@
+﻿<Window x:Class="FirstWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstWpfApp" 
+        xmlns:views="clr-namespace:FirstWpfApp.Views"
+        xmlns:vms="clr-namespace:FirstWpfApp.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <Grid Margin="50 50 50 50">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:MakeReservationViewModel}">
+                <views:MakeReservationView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ReservationListingViewModel}">
+                <views:ReservationListingView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ReservationDetailViewModel}">
+                <views:ReservationDetailView />
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+    </Grid>
+</Window>
